@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由入门案例及嵌套</title>
+</head>
+<body>
+<div id="app">
+  <a href="http://www.baidu.com">百度</a>
+<!--  2.定义路由请求地址
+    2.1 router-link 在解析之后形成a标签
+    2.2 to 在解析之后形成href属性，实现页面跳转
+-->
+  <router-link to="/home">家</router-link>
+  <router-link to="/dog">狗</router-link>
+    <router-link to="/zoo">动物园</router-link>
+<!--  3.需要在当前页面中展现新组件的内容 html 提前设定占位符 -->
+  <router-view></router-view>
+
+</div>
+<!--5.定义模板-->
+<template id="homeTem">
+    <div>
+        <h2>这里是家</h2>
+    </div>
+</template>
+<template id="dogTem">
+    <div>
+        <h2>这是狗狗</h2>
+    </div>
+</template>
+<template id="zooTem">
+    <div>
+        <h2>这是动物园</h2>
+        <router-link to="/zoo/dog">狗狗</router-link>
+        <router-link to="/zoo/lion">狮子</router-link>
+<!--        设定占位符-->
+        <router-view></router-view>
+    </div>
+</template>
+
+<template id="lionTem">
+    <div>
+        <h2>我是狮子</h2>
+    </div>
+</template>
+
+
+
+
+
+<!--1.导入JS 注意顺序-->
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+   //定义组件变量
+   let homeCom={
+       template:"#homeTem"
+   }
+    let dogCom={
+       template:"#dogTem"
+    }
+    let zooCom={
+       template:"#zooTem"
+    }
+    let lionCom={
+       template:"#lionTem"
+    }
+    /*
+    * 实现请求与路由的绑定 定义路由对象
+    * routes: 是一个数组的解构，数组中包含对象的解构，定义路由规则
+    * path: 拦截请求路径的名称
+    * component:组件名称
+    * */
+   const router=new VueRouter({
+       routes:[
+           //重定向 在没有后缀的时候 默认跳转到 /dog组件
+           {path:"/",redirect:"/dog"},
+           {path:"/home",component:homeCom},
+           {path:"/dog",component:dogCom},
+           {path:"/zoo",component:zooCom,
+           //    定义父子级关系的属性，在指定的位置渲染子组件
+           children:[{path:"/zoo/dog",component:dogCom},
+               {path:"/zoo/lion",component:lionCom}]
+           }
+       ]
+   })
+   //4.将路由对象与Vue实例绑定
+   const ap=new Vue({
+       el:"#app",
+       router
+   })
+
+</script>
+</body>
+</html>

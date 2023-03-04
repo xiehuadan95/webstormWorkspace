@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>login</title>
+  <style>
+    #a{
+      /*border: solid 1px greenyellow ;*/
+      border-top: 1px solid #ffffff;
+      border-radius: 25px;
+      box-shadow: darkgrey 15px 15px 35px 10px  ;
+      height:300px;width:400px;
+      position:absolute;
+      top:0;right:0;bottom:0;left:0;
+      margin:auto;
+      font-family: "Arial Black";
+      font-size: 15px;
+      /*background-image: url("../img/12.jpg");*/
+      /*background-color: grey;*/
+      opacity: 70%;
+    }
+    #b{
+      margin: auto;
+      padding-top: 6px;
+      padding-bottom: 5px;
+      height: 20px;
+      width: 200px;
+      font-size: 20px;
+    }
+    body{
+      weight:100%;
+      height: 100%;
+      background-image: url("../img/socialBanner.png");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    .i{
+      width: 178px;
+      height: 20px;
+      padding: 10px;
+      /*border-radius: 5px;*/
+      /*border: solid 1px red ;*/
+    }
+    .i2{
+      width:110px;
+      height:15px;
+    }
+    .i3,.i5{
+      padding: 10px;
+    }
+    .i4{
+      padding-left: 100px;
+      padding-top: 12px;
+    }
+    a{
+       text-decoration:none
+    }
+  </style>
+</head>
+<body>
+
+<div id="a" >
+  <div align=center id="b"><strong>赞同登录系统</strong></div>
+        <div class="i" style="float: right"><strong>密码：</strong><input class="i2"  type="text"/></div>
+       <div class="i"><strong>账户名：</strong><input class="i2" type="text"/></div>
+   <div class="i3"><strong>职&nbsp;&nbsp;位：</strong>
+     <select style="width: 80px;height: 20px" >
+     <option>CEO</option>
+     <option>COO</option>
+     <option>CMO</option>
+     <option>CTO</option>
+     <option>CHO</option>
+     <option>CFO</option>
+     <option>打工人</option>
+     <option selected>临时工</option>
+   </select> </div>
+  <div class="i3">
+    <strong>性&nbsp;&nbsp;别：</strong><input type="radio" name="sex"/> 女
+    <input type="radio" name="sex"/> 男
+  </div>
+  <div class="i3">
+    <strong>年&nbsp;&nbsp;龄：</strong><input class="i2" type="text"/>
+  </div>
+  <div class="i5">
+    <strong>建&nbsp;&nbsp;议：</strong><input type="text" class="i2"  style="background-color: #999999" readonly="readonly" disabled/>
+  </div>
+ <div class="i4"> <button ><a href="https://www.agree.com.cn/ " target="_blank">提&nbsp;交</a></button>
+<button style="margin-left: 100px">重&nbsp;置</button></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>javascript</title>
+</head>
+<!-- javascript：概念 面向对象函数式编程 可动态添加属性和方法 灵活的声明对象 所有的声明都用var 编程方式：面向对象或者面向元素
+特点：弱类型的语言而且可跨平台
+2.基础语法：
+常量 const 修饰为常量
+变量 let/var  ——>1.声明变量 var myName,age，email 可同时声
+
+
+
+
+
+明多个变量 （如果只声明不赋值）console.log(age)会输出undefined
+ 2.变量赋值 3.初始化
+命名规范
+表达式：常量 ，变量，布尔值和运算符的集合（算数表达式，字符表达式，赋值表达式，布尔表达式
+运算符：+ - * /  % ++  --
+逻辑运算符：&& 逻辑与 || 逻辑或 ！非
+比较运算符：< > <= >= == != ===
+数据类型：Number String  Boolean  Null undefined  Symbol 基本  +   引用：Object  Array Function
+
+同步优先 异步靠边 回调最后
+
+基础语句：
+if-else for while  do-while switch-case break continue
+事件： onclick、onchange、onselect、onDbclick、onfocus 聚焦、onblur 鼠标离焦、ondrop 拖动物体、
+-->
+<body>
+<p id="test">我是一段段落</p>
+<p id="demo"><mark>javaScript能改变HTML元素的内容</mark></p>
+
+<button type="button" onclick="alert('点击成功')">点击事件</button>
+
+<button type="button" onclick="myFunction()">点击改变</button>
+<button type="button" onclick="alert(method(x,y))" >点击计算</button>
+<script>
+  var x,y,z;
+  x=1;y=2;z=(x+y)*2
+  var person={name:"jack",age:18,height:"170cm"};
+  var arr1=[1,2, , "haha"];
+  arr1.length=5;
+  console.log(arr1);
+  // document.getElementById("demo").innerText=z;
+  document.getElementById("test").innerText=arr1;
+  console.log(person);
+  document.writeln("<h1>hello javascript</h1>");
+  function myFunction(){
+    x=document.getElementById("demo");
+    x.innerHTML="hello JavaScript!!";
+  }
+  function method(a,b){
+    return a*b;
+  }
+  // document.getElementById("demo").innerText="段落已修改";
+  // alert("我是javascript");
+</script>
+
+</body>
+</html>

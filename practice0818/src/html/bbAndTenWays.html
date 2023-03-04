@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>闭包的10种表示形式</title>
+</head>
+<body>
+<script>
+  /* 返回值  函数赋值  函数参数  IIFE  循环赋值
+  * getter 和setter  迭代器  区分首次 缓存机制 img对象图片上报
+  * */
+var fn=function (){
+  var name ='mj';
+  return function (){
+    return name;
+  }
+}
+var fnc=fn();  console.log(fnc());//常见的返回值形式形式
+
+//2.函数赋值（将内部的函数 赋值 给一个外部的变量）
+  var fnn;
+  var fn2 =function (){
+    var name ='mjj';
+    var a = function (){
+      return name;
+    }
+    fnn =a;
+  }
+fn2();console.log(fnn());
+//把函数当做参数传递到 一个函数中来进行实现；
+  function fz(n){
+    console.log(n());
+  }
+  function foo(){
+    var name='jack';
+    var a=function(){
+      return name;
+    }
+    fz(a);
+
+  }
+  foo();
+//IIFE 由函数参数演变过来
+  function fz2(f){
+    console.log(f());
+  }
+  (function foo2(){
+    var name='IIFE';
+    var a=function(){
+      return name;
+    }
+    fz2(a);
+  })();
+ //循环赋值.
+  function ff() {
+    var arr = [];
+    for (var i = 0; i < 10; i++) {
+      /*    (function (i){
+      arr[i]=function (){
+        return i
+      }
+    })(i)*/
+      arr[i] = (function (n) {
+        return function () {
+          return n;
+        }
+      })(i);
+    }
+    return arr;
+  }
+  var res=ff();
+  console.log(res[3]());
+//getter  setter 函数 将要操作的变量保存在函数内部，防止暴露在外部
+  var getValue,setValue;
+  (function (){
+    var num=0;
+    getValue=function (){
+      return num;
+    }
+    setValue=function (v){
+      if(typeof v=='number'){
+        num=v;
+      }
+    }
+  })();
+  console.log(getValue());
+  setValue(10);
+  console.log(getValue());
+// 计数器 迭代器
+  var add=function (){
+    var num=0;
+    return function (){
+      return ++num;
+    }
+  }();
+  console.log(add());
+  console.log(add());
+  //通过计数器的形式 自己做迭代器
+  function setUp(arr){
+  var i=0;
+  return function (){
+    return arr[i++];
+  }
+  }
+  var nex=setUp(['alex','jack','tom']);
+  console.log(nex());
+  console.log(nex());
+  console.log(nex());
+//区分首次调用
+  var firstLoad=(function (){
+    var list=[];
+    return function (id){
+      //已经有id
+      if(list.indexOf(id)>=0) {
+        return false;
+      }else {
+        //首次调用
+        list.push(id);
+        return true
+      }
+    }
+  })();
+console.log(firstLoad(10));
+console.log(firstLoad(11));
+console.log(firstLoad(10));
+//9. 缓存机制
+  //9.1未加入缓存
+/*function mult(){  //求和
+  var sum=0;
+  for (var i = 0; i <arguments.length ; i++) {
+    sum=sum+arguments[i];
+  }
+  return sum;
+}
+console.log(mult(1,2,4,6,8,9,1));*/
+//9.2有缓存机制  模拟一个对象的Key 看该对象中是否有相同的key，如果有则直接获取value返回
+
+  var mult=function (){
+    //缓存对象
+    var cache={};
+    var calculate=function (){
+      var sum=0;
+      for (var i = 0; i <arguments.length ; i++) {
+        sum=sum+arguments[i];
+      }
+      return sum;
+    }
+    return function (){
+      //对cache对象进行操作
+      var args=Array.prototype.join.call(arguments,',');
+      if(args in cache) {
+        return cache[args];
+      }
+      console.log(cache);
+        return cache[args] = calculate.apply(null, arguments);
+    }
+  }();
+  console.log(mult(1,2,4,6,8,9,1));
+  console.log(mult(1,2,4,6,8,9,1));
+  console.log(mult(1,2,4,6,8,9,1,20));
+  console.log(mult(1,2,4,6,8,9,1,20));
+//img 对象图片上报 new Image() 进行数据上报
+  var report=function (src){
+    var imgs=[];
+    return function () {
+      var img = new Image();
+      imgs.push(img);
+      img.src = src;
+    }
+  }();
+  report('http://xxx.com/getUserInfo');
+</script>
+
+</body>
+</html>

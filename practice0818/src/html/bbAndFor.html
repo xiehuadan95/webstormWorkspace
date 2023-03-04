@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>循环和闭包</title>
+</head>
+<body>
+<script type="text/javascript ">
+//需求 以数组的下标为参数 放进去多少 输出多少下标
+
+function  foo(){
+  var arr=[];
+  for (var  i = 0; i <10 ; i++) {
+   /* arr [i] = (function (n) {
+      return function () {
+        return n;
+      }
+    })(i);*/
+    //使用闭包解决循环中变量的问题，相当于把变量保存在内存中，每次执行的时候从内存中获取
+    (function (n){
+      arr[n]=function (){
+        return n;
+      }
+    })(i);
+  }
+  return arr;
+}
+var bar= foo();
+console.log(bar);
+console.log(bar[0]());
+console.log(bar[1]());
+console.log(bar[4]());
+//使用块级作用域 也可以解决 ES6开始
+function foo1(){
+  var arr=[];
+  for (let i = 0; i <10 ; i++) {
+    arr[i]=function (){
+      return i;
+    }
+  }
+  return arr;
+}
+var bar1=foo1();
+console.log(bar1);
+console.log(bar1[0]());//如果用var i  则访问到的i 都是i++后的值 固定为10
+console.log(bar1[3]());
+//在编程中，如果时机和预期结果不符合，就按照代码执行顺序一步一步的把执行环境图示画出来
+//会发现很多时候我们都是在想当然
+
+</script>
+
+</body>
+</html>

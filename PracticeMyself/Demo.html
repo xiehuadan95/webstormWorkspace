@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test网页</title>
+    <script  src="jquery-3.6.0.min.js"> </script>
+    <script>
+    // function f(){
+    //     alert("点击事件成功！");
+    // }
+     $(function(){
+       $("p.T").click(
+           function (){
+               alert("点击事件成功！")
+           });
+      });
+
+    </script>
+</head>
+<body>
+<h1>我是无情的标题H1</h1>
+<p class="T">我是测试的段落</p>
+
+<p>我是测试的段落2号</p>
+
+</body>
+</html>

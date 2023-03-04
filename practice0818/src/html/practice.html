@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+  <style>
+    body{
+      background-image: url("../img/2.jpg");
+      background-repeat: no-repeat;
+      /*background-origin: border-box;*/
+      background-size: cover;
+      background-attachment: fixed;
+      height: 8000px;
+    }
+    header {
+      text-align: center;
+      /*background-color: ;*/
+    }
+    .radius {
+      width: 200px;
+      height: 200px;
+      background-color: paleturquoise;
+      border-radius: 70px 50px 30px 10px;
+      margin-left: 25%;
+      opacity: 50%;
+      box-shadow: #888888 15px 15px 15px;
+      /*text-align: center;*/
+      float: left;
+      /*padding-top: 30px;*/
+    }
+    .radius div {
+      width: 100px;
+      height: 100px;
+      background-color: orangered;
+      border-radius: 20px;
+      box-shadow: black -20px 20px 15px;
+      /* 4个参数 颜色 往右多少距离 往下多少距离 （负数为反） 模糊度 数值越高越模糊  */
+    }
+    /* ：伪类选择器 选择 父元素的第一个子元素*/
+    ul > li:first-child {
+      color: purple;
+      font-family: "Footlight MT Light";
+      font-size: 20px;
+      text-shadow: purple 10px 10px 20px;
+    }
+    /*结构型伪类选择器  nth-child用来定位某个父元素的一个或多个特定的子元素*/
+    .u2>li:nth-child(2n){
+      color:red;
+      font-weight: bold;
+    }
+    .ul{
+      float: left;
+    }
+    .ol{
+      margin-left: 100px;
+      float: left;
+    }
+    /*从某父元素的最后一个子元素开始计算，来选择特定的元素*/
+    ol>li:nth-last-child(2){
+      color:goldenrod;
+      font-weight: bolder;
+    }
+    .fu{
+      border:pink dotted 1px;
+      margin-left: 50px;
+      float: left;
+    }
+    /*用来定位一个父元素下的某个类型的第一个子元素
+    last-of-type 某个类型的最后一个子元素
+    */
+    .fu>p:first-of-type{
+      color:goldenrod;
+      font-size:18px;
+      text-shadow: #888888 1px -1px 5px;
+    }
+    .radius2{
+      float: left;
+      margin-left: 20px;
+      background-color: yellowgreen;
+      box-shadow: purple -3px -7px 10px ;
+      width:100px;height: 50px;
+      border-radius: 50px 50px 0 0;
+    }
+    /*box-shadow 加 inset表示内部阴影效果 不加默认为外部效果*/
+    .radius3{
+      float: left;
+      margin-left: 15px;
+      background-color: black;
+      box-shadow: purple 0px 0 20px;
+      width:100px;height: 100px;
+      border-radius: 100px 100px 100px 100px;
+    }
+    .radius4{
+       float: left;
+       margin-left: 20px;
+       background-color: white;
+       box-shadow:purple  0px 0 30px inset;
+       width:100px;height:100px;
+       border-radius: 100px 100px 100px 100px;
+     }
+    .borderImage1{
+      /*float: left;*/
+      margin-top:200px ;
+      background-color:rgba(100,120,60,0.5);
+      border:70px solid #ddd;
+      width:200px;height: 200px;
+      border-image: url("../img/1.jpg");
+      border-image-slice: 100%;
+      border-image-repeat: repeat;
+      /*linear-gradient 线性渐变 径向为radial  方向*/
+      background-image: linear-gradient(to right,red,orange,yellow,green,blue,indigo,violet);
+      opacity: 40%;
+    }
+    .linear{
+      float: left;
+      margin-left:50px;
+      width:200px;height:200px;
+      background-color: white;
+      box-shadow:black  0px 0px 30px inset;
+      border-radius:200px 200px 200px 200px;
+      /*从下向上 角度：0deg*/
+      background-image: linear-gradient(to top,red,orange,yellow,green,blue,indigo,violet);
+    opacity: 50%;
+    }
+    .linear1{
+      float: left;
+      margin-left:20px;
+      width:200px;height:200px;
+      background-color: white;
+      box-shadow:black  0px 0px 30px ;
+      border-radius:200px 200px 200px 200px;
+      /*从左向右 角度：90deg*/
+      background-image: linear-gradient(to right,red,orange,yellow,green,blue,indigo,violet);
+      opacity: 60%;
+    }
+    .linear2{
+      float: left;
+      margin-left:20px;
+      width:200px;height:200px;
+      background-color: white;
+      box-shadow:black  10px 10px 15px ;
+      border-radius:200px 200px 200px 200px;
+      /*从上向下 角度：180deg*/
+      background-image: linear-gradient(to bottom,red,orange,yellow,green,blue,indigo,violet);
+      opacity: 70%;
+    }
+    .linear3{
+      float: left;
+      margin-left:20px;
+      width:200px;height:200px;
+      background-color: white;
+      box-shadow:purple  15px 15px 30px ;
+      border-radius:200px 200px 200px 200px;
+      /*从右下角到左上角 */
+      background-image: linear-gradient(to top left,red,orange,yellow,green,blue,indigo,violet);
+      opacity: 80%;
+    }
+    .linear4{
+      float: left;
+      margin-left:20px;
+      width:200px;height:200px;
+      background-color: white;
+      box-shadow:purple  20px 20px 35px ;
+      border-radius:200px 200px 200px 200px;
+      /*从左上角到右下角 */
+      background-image: linear-gradient(to bottom right,red,orange,yellow,green,blue,indigo,violet);
+      opacity: 90%;
+    }
+    .rotate1,.rotate2,.rotate3,.rotate4,.skewX,.skewY,.skew{
+      float: left;
+      margin-left: 20px;
+      background-color: white;
+      box-shadow:purple  0px 0 30px inset;
+      text-shadow: 4px 3px 3px black ;
+      width:150px;height:150px;
+      /*padding-top: 10px;*/
+      color: #dddddd;
+      border-radius: 100px 100px 100px 100px;
+      background-image: linear-gradient(to right,red,green,gray,white);
+    }
+    .rotate2{
+      /*改变元素的中信点 到左上*/
+      /*transform-origin: left top;*/
+      transform: rotate(90deg);
+    }
+    .rotate3{
+      transform: rotate(180deg);
+    }
+    .rotate4{
+      transform: rotate(270deg);
+    }
+    /*1.skewX(x) 使元素在水平方向扭曲变形 2.skewY(y)使元素在垂直方向扭曲变形 3.skew(x,y) 两个方向同时按照一定角度*/
+    .skewX{
+      transform: skewX(20deg);
+    }
+    .skewY{
+      transform: skewY(20deg);
+    }
+    .skew{
+      transform: skew(20deg,20deg);
+    }
+    .scale,.scaleX,.scaleY,.scaleXY,.translateX,.translateY,.translate{
+      float: left;
+      margin-left: 50px;
+      margin-top: 20px;
+      background-color: white;
+      box-shadow:purple  0px 0 30px inset;
+      text-shadow: 4px 3px 3px black ;
+      width:150px;height:150px;
+      /*padding-top: 10px;*/
+      color: #dddddd;
+      border-radius: 100px 100px 100px 100px;
+    }
+    .scaleX{
+      transform: scaleX(1.5);
+    }
+    .scaleY{
+      transform: scaleY(0.7);
+    }
+    .scaleXY{
+      /*transform: scale(0.7,0.7);*/
+      transform:scale(1.5,1.5);
+    }
+    .translateX{
+      transform: translateX(40px);
+    }
+    .translateY{
+      /*transform: translateY(-40px);*/
+      transform: translateY(30px);
+    }
+  .translate{
+    /*往右下移动*/
+    transform: translate(30px,30px);
+  }
+  /*动画过度属性 */
+  .transition{
+    float: left;
+    margin-left: 100px;
+    margin-top:20px;
+    background-color: pink;
+   /*transform: translate(50px,100px);*/
+    width:300px;height: 100px;
+   transition: width 5s,height 5s;
+    box-shadow: #222222 20px 20px 20px;
+  }
+  /*绑定了一个伪类*/
+  /*  鼠标进入 这个div 宽度高度就会移动 4s 3s 达到最终的500px 150px 鼠标移出 恢复原状*/
+  .transition:hover{
+    width:800px;
+    height:150px ;
+  }
+  /*动画效果*/
+    .dh {
+      float: left;
+      margin-left: 20px;
+      margin-top: 20px;
+      width: 100px;
+      height: 100px;
+      background-color: tomato;
+      position: relative;
+      animation-name: example;
+      /*动画持续时间*/
+      animation-duration: 1s;
+      /*延时*/
+      animation-delay: 1s;
+      /*执行次数*/
+      animation-iteration-count: 10;
+    }
+  /*  媒体选择器 指定选择动画的名称*/
+  @keyframes example {
+    0%{background-color: turquoise;left: 0px;top: 0px;}
+    25%{background-color: blue;left: 200px;top: 0px;}
+    50%{background-color: orangered;left: 200px;top: 200px;}
+    75%{background-color: green;left: 0px;top:200px;}
+    100%{background-color: black;left: 0px;top: 0px;}
+  }
+  </style>
+</head>
+<body >
+<header>
+  <video width="400px" height="200px" controls>
+    <source src="../video/movie.mp4" type="video/mp4"/>
+  </video>
+</header>
+<h2>Welcome to Here!!</h2>
+<p>
+<details>
+  <summary>
+    <mark>展开有惊喜!!!</mark>
+  </summary>
+  <ul>
+    <li>意不</li>
+    <li>意外</li>
+    <li>惊不</li>
+    <li>惊喜</li>
+  </ul>
+</details>
+&nbsp;&nbsp;目前人气：
+<meter min="0" max="100" value="80"></meter>
+80人&nbsp;&nbsp;
+<!--  input类型 range range类型显示为滑动条 设定对所接受的数字的限定-->
+range类型input：<input type="range" name="range类型" min="1" max="20"/>
+</p>
+<div id="a">
+  年月日选择： <input type="date" name="year"/>月份选择器： <input type="month" name="month"/>
+  周和年：<input type="week" name="week"/>小时和分钟：<input type="time"/>
+  datetime-local(本地时间):<input type="datetime-local"/>
+  search类型input：<input type="search" name="userSearch" placeholder="欢迎使用搜索功能"/>
+  input的color类型(选择颜色）：<input type="color" name="color"/>
+</div>
+<div id="b">
+<div class="radius">
+  <div><strong>
+    <mark>border-radius样式</mark>
+  </strong></div>
+</div>
+<div class="ul"><ul class="u2">
+  <li>一</li><li>二</li><li>三</li><li>四</li>
+  <li>五</li><li>六</li><li>七</li><li>八</li>
+  <li>九</li><li>十</li><li>十一</li><li>十二</li>
+</ul></div>
+<div class="ol">
+  <ol>
+    <li>西游记</li><li>红楼梦</li><li>金瓶梅</li><li>三国演义</li>
+    <li>聊斋志异</li><li>儒林外史</li><li>大学</li><li>中庸</li>
+  </ol>
+</div>
+<div class="fu">
+  <h3>我是第一个子元素</h3>
+  <p>我是第二个子元素，但是是第一个段落元素</p>
+  <p>我是第三个子元素，但是是第二个段落元素</p>
+</div>
+<div class="radius2"></div><div class="radius3"></div><div class="radius4"></div>
+</div>
+<h2 >边框图片</h2>
+<div class="borderImage1"></div><div class="linear"></div><div class="linear1"></div><div class="linear2"></div>
+<div class="linear3"></div><div class="linear4"></div><div class="rotate1">rotate()旋转前</div>
+<div class="rotate2">rotate(90deg)</div><div class="rotate3">rotate(180deg)</div><div class="rotate4">rotate(270deg)</div>
+<div class="skewX">skew()变形</div><div class="skewY">skew()变形</div><div class="skew">skew()变形</div>
+<div class="scale">原始版</div><div class="scaleX">X轴缩放</div><div class="scaleY"> Y轴缩放</div><div class="scaleXY"> XY轴缩放</div>
+<div class="translateX">X轴移动</div><div class="translateY">Y轴移动</div><div class="translate">XY轴移动</div>
+<div class="transition">
+  <h2 style="color:mediumvioletred">过度属性transition</h2>
+</div>
+<div class="dh">动画</div>
+</body>
+</html>

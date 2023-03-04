@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门案例</title>
+    <style>
+        /*定义属性 v-cloak的样式*/
+        [v-cloak]{
+            /*将元素进行隐藏 */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!--v-cloak这个指令将在元素上直到关联实例结束编译 和CSS规则一起用时 这个指令可以隐藏未编译的Mustache标签直到实例准备完毕-->
+<h1>v-cloak属性</h1>
+<div id="app" v-cloak>
+
+    <h3>{{hello}}</h3>
+    <h2 v-text="text"></h2>   //此指令没有闪动效果，而且提升了Mustache 相当于升级版
+    <p v-html="html">v-html解析了传回来得html片段，有html的效果</p>
+    <p>{{html}}===此为Mustache的效果没法解析传回来的html格式的数据</p>
+    <h3 v-pre>{{hello}}++加了v-pre指令</h3>
+<!-- 只渲染元素和组件一次！！   随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过，可以用于优化更新性能-->
+    <p v-once>{{once}}--标签加了v-onece 元素和组件只渲染一次</p>
+    <!--在表单控件或者组件上创建双向绑定,当js数据修改时,页面内容变化, 当页面内容修改时,则数据变化.常用于输入框-->
+    输入框：<input type="text" v-model="name" name="input" style="border: 2px solid green;width: 300px;height: 30px"/>
+</div>
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app=new Vue({
+    el:"#app",  //element 元素
+    data:{
+      hello:"helloVue!!!",
+        text:"数据绑定text",
+        html:"<h2>html测试数据</h2>",
+        once:"只能被渲染一次，不能再次更改",
+        pre:"就是得到本来的原始的Mustache标签，实用性不强，跳过大量没有指令的节点，加快编译",
+        name:"双向绑定，一边更改，另外一边随之变化！！"
+    }
+  })
+
+
+
+</script>
+</body>
+</html>

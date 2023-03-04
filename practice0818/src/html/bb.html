@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> 的使用</title>
+</head>
+<body>
+<script>
+  function book(){
+    var book="书本";
+    return function (){
+      console.log(book);
+    }
+  }
+   var bag=book();
+   bag();
+// 1.  闭包做计数器 作用：读取函数内部的变量，这些变量始终再内存中 因为result始终对 a（）进行引用 小心内存泄露
+  //所以 使用完后 可以对其进行赋值 为null
+  function a(){
+    var count=0;
+    function a2(){
+    console.log(count++);
+    }
+    return a2;
+  }
+   var result=a();
+  for (let i = 0; i <5 ; i++) {
+    result();
+  } //1 2 3 4 5
+  //释放当前的变量
+  result=null;
+
+//2.闭包能封装对象的私有属性和方法
+  function Person(name){
+    var age;//私有属性
+    function setAge(n){
+      age=n;
+    }
+    function getAge(){
+      return age;
+    }
+    return {
+      name:name,
+      sAge:setAge,
+      gAge:getAge
+    }
+
+  }
+  var p=Person('jack');
+  p.sAge(18);
+  document.write(p.gAge());
+  P=null;
+//总结：每个父函数调用完成，都会形成新的闭包父函数中的变量始终会在内存中，相当于缓存，小心内存消耗问题
+  // 闭包三个条件  1.函数嵌套  2.访问所在的作用于  3.在所在的作用域外被调用
+</script>
+
+</body>
+</html>

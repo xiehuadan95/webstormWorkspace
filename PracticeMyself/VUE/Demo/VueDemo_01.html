@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门案例</title>
+</head>
+<body>
+<!--1.语法规则：vue中biu定义根目录标签-->
+<div id="app">
+<!--  利用Mustache 插值表达式 来渲染目标标签-->
+  <div>{{hello}}</div>
+
+</div>
+<!--引入 vue js-->
+<script src="../js/vue.js"></script>
+<!--编辑vue js-->
+<script>
+  /*
+  * 定义变量  var   弊端：没有作用域的概念  如果变量名称重复则可能会引发问题
+  * 2.定义变量 let  有作用域的概念
+  * 3.常量  const  全局唯一不可更改
+  * */
+  const app=new Vue({
+    //标识VUE对象的作用范围
+    el:"#app",
+    //定义数据对象
+    data:{
+      hello:"helloVue!!!"
+    }
+
+  })
+
+
+
+</script>
+</body>
+</html>

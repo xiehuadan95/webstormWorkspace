@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>循环结构</title>
+  <style>
+
+
+  </style>
+</head>
+
+<body>
+<div id="app">
+  <!-- vue中的循环  v-for
+   1.循环获取数据的内容
+   2.可以循环复制标签
+   item: 变量名 自己定义
+   in: 关键字 固定写法
+   array: 要遍历的数据
+   -->
+  <!-- 语法:获取元素内容 -->
+  <h2 v-for="item in array">{{item}}</h2>
+  <hr/>
+  <!--语法2: 获取数据 及下标 -->
+  <h2 v-for="(item,index) in array">{{item}}+下标:{{index}}</h2>
+  <!-- 只获取一个值得时候依然是元素内容 index非下标 -->
+  <h2 v-for="index in array">{{index}}</h2>
+  <hr/>
+  <h3>循环遍历集合信息</h3>
+  <div v-for="item in userList">
+    <p>输出item:{{item}}</p>
+    <p>ID:{{item.id}}</p>
+    <p>名称:{{item.name}}</p>
+
+  </div>
+  <hr/>
+  <p>如果直接遍历对象则输出的事value值
+    参数说明:1.value 对象的值  2.对象的key 3.数据的下标
+  </p>
+  <div v-for="item in user">
+    <span>{{item}}</span>
+    <span v-text="item"></span>
+  </div>
+  <hr/>
+  <div v-for="(value,key,index) in user">
+    <span v-text="key"></span>+值
+    <span v-text="value"></span>+下标
+    <span v-text="index"></span>
+
+  </div>
+
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+  const ap=new Vue({
+    el:"#app",
+    data:{
+      array:["安其拉","猴子","臭皮匠"],
+      userList: [{
+        id:100,
+        name:"鲁班"
+      },{
+        id:20,
+        name:"貂蝉"
+      },{
+        id:23,
+        name:"潘凤"
+      },{
+        id:201,
+        name:"黑熊精"
+      }],
+      // 定义user对象
+      user:{
+        id:3,
+        name:"西施",
+        age:18
+      }
+    },
+
+
+
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>立即执行函数 IIFE</title>
+</head>
+<body>
+<script type="text/javascript">
+<!--  ()是表达式 跟在函数后面表示调用函数 立即执行函数：需要定义函数之后，立即调用该函数，这种函数叫做立即执行函数IIFE-->
+//如果function出现在行首 一律解释成函数声明语句
+//1.常用的两种写法：第一种
+(function(){
+
+})();
+//第二种：
+(function(){
+
+}());
+//通常情况下，写自执行函数的时候 前面会加 + 或者！ 之类的，避免写多个立即执行函数的时候，末尾
+//忘记加 ; 分号，依然函数可以执行
+!(function (){}());
+/*自执行函数的应用 计数器  每次调用add都返回加1的数字（初始值为0）
+1.全局变量，如果函数里面用了，我们会污染全局变量
+var a =0;
+function add(){
+  return ++a;
+}
+console.log(add());
+console.log(add());
+
+2.自定义属性，有些代码可能会无意修改
+function add(){
+  return ++add.count;
+}
+add.count=0;
+console.log(add());
+console.log(add());
+console.log(add());
+*/
+
+//通过使用立即执行函数，可以封装私有属性 减少对全局变量的污染！
+var add=(function (){
+  var count=0; //私有属性
+  return function(){
+    return ++count;
+  }
+})();
+//console.log(count); 拿不到私有变量
+console.log(add);
+console.log(add());
+console.log(add());
+
+var add2=(function(){
+  var count=10;
+  return function (){
+    return ++count;
+  }
+})();
+console.log(add2());
+console.log(add2());
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+
+<script src="axios.js"></script>
+<!--axios
+本身就对Promise进行了封装 所以会返回Promise对象
+-->
+<script>
+<!-- 自定义axios配置
+-->
+const request = axios.create({
+    baseURL: 'http://localhost:8080',  //主机地址
+    timeout: 100,        //超时时间 毫秒 默认会有一次重试
+    headers: {
+        token:'hello123'   //token
+    }
+})
+//请求拦截器
+// request.interceptors.request.use(
+//     function (config){
+//         console.log('请求拦截')
+//         console.log('config',config)
+//         config.headers.mytoken='hello123'
+//         return config
+//     },
+//     function (error){
+//         return Promise.reject(error)
+//     }
+// )
+
+
+  axios({
+    url:'http://localhost:8080/user/list',
+    method:'get',
+  }).then(response=>{
+    console.log('数据获取成功',response.data)
+  }).catch(error=>{
+    console.log('数据获取失败',error)
+  })
+
+//响应拦截
+request.interceptors.response.use(
+    function (response){
+        console.log('rsp',response)
+        //成功后 还要放行 才会往下走
+        return response.data
+    },
+    function (error){
+        //对错误做点什么
+        return Promise.reject(error)
+    }
+)
+
+  //另一种写法 当对象使用 有get post put等方法
+//这里会根据基础配置将 baseURL追加到地址前面
+  request.get('/user/list').then(response=>{
+    console.log('数据获取成功',response)
+
+  }).catch(error=>{
+    console.log('数据获取失败',error)
+  })
+</script>
+</body>
+</html>

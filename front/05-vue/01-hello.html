@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>引入vue脚本库</title>
+</head>
+<body>
+<!-- 单页应用 -->
+<div id="app">
+<!-- 插值表达式 、声明式渲染-->
+    <h1>{{title}}</h1>
+    <p>欢迎{{user.name}}</p>
+</div>
+<script src="vue.js"></script>
+<script >
+<!--  创建vue对象 配置对象-->
+//固定 el 元素 这里 元素的id为app 对其进行渲染
+new Vue({  //这个vue只负责处理当前app这个节点里面的内容
+  el: '#app', //使用css3选择器语法 指定element元素
+  data: {           //data是对象类型 定义页面要展示的数据
+    title: '第一个vue',
+    user: {
+      name: 'hahaguai',
+      age: 18
+    }
+  }
+})
+
+</script>
+</body>
+</html>

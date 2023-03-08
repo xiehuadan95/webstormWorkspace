@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>module demo </title>
+</head>
+<body>
+<!--  导入自己的模块 m1里面所有的成员，并取名m1-->
+<script type="module">
+    // import * as m1 from './m1.js'
+    // import * as m2 from './m2.js'
+
+    // console.log(m1)
+    // console.log(m2)
+    // console.log(m1.star)
+    // console.log(m2.star)
+    // m1.sing('lala')
+
+
+//    另一种导入方式
+//     import {star,sing} from './m1.js'
+//     import {star as star1} from './m2.js'
+//     console.log(star)
+//     sing('哈哈')
+//     console.log(star1)
+
+    //导入默认的模块 default
+    import m3 from './m3.js'
+    console.log(m3)
+    console.log(m3.username)
+    console.log(m3.age)
+    m3.coding()
+
+</script>
+</body>
+</html>

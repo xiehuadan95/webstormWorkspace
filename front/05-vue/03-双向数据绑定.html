@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!-- 输入框  这个输入框修改不会影响 -->
+    <input type="text" :value="company"/>
+<!-- 数据模型 这个company是从data中获取到，页面中修改会影响我们的数据模型 会影响其他的company 形成了一个双向数据绑定
+当视图发生变化的时候，数据也会跟着同步变化，会同步到数据模型中
+只能用于用户交互组件！！
+-->
+    <input type="text" v-model="company"/>
+<!-- 使用数据绑定指令，渲染html的动态属性-->
+<a v-bind:href="site">{{company}}</a>
+<!-- 动态的数据模型的值 site-->
+<a :href="site">{{company}}</a>
+
+</div>
+
+<script src="vue.js"></script>
+<!--需要把动态获取的值 放到data里面 页面中就可以用v-bind 的方式，属性前面加：跟v-bind一样-->
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      company:'百度',
+      site: 'https://www.baidu.com'
+    }
+
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!-- 使用数据绑定指令，渲染html的动态属性-->
+<a v-bind:href="site">{{company}}</a>
+<!-- 动态的数据模型的值 site-->
+<a :href="site">{{company}}</a>
+
+</div>
+
+<script src="vue.js"></script>
+<!--需要把动态获取的值 放到data里面 页面中就可以用v-bind 的方式，属性前面加：跟v-bind一样-->
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      company:'百度',
+      site: 'https://www.baidu.com'
+    }
+
+  })
+
+</script>
+</body>
+</html>

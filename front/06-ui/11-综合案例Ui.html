@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入样式  element-UI-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <div>
+        <el-button>默认按钮</el-button>
+        <el-button type="primary">主要按钮</el-button>
+        <el-button type="success">成功按钮</el-button>
+        <el-button type="info">信息按钮</el-button>
+        <el-button type="warning">警告按钮</el-button>
+        <el-button type="danger" icon="el-icon-lightning">危险按钮</el-button>
+        <el-row>
+            <el-button plain>朴素按钮</el-button>
+            <el-button type="primary" plain>主要按钮</el-button>
+            <el-button type="success" plain>成功按钮</el-button>
+            <el-button type="info" plain>信息按钮</el-button>
+            <el-button type="warning" plain>警告按钮</el-button>
+            <el-button type="danger" plain>危险按钮</el-button>
+        </el-row>
+        <el-row>
+            <el-button round>圆角按钮</el-button>
+            <el-button type="primary" round>主要按钮</el-button>
+            <el-button type="success" round>成功按钮</el-button>
+            <el-button type="info" round>信息按钮</el-button>
+            <el-button type="warning" round>警告按钮</el-button>
+            <el-button type="danger" round>危险按钮</el-button>
+        </el-row>
+        <el-row>
+            <el-button icon="el-icon-search" circle></el-button>
+            <el-button type="primary" icon="el-icon-edit" circle></el-button>
+            <el-button type="success" icon="el-icon-check" circle></el-button>
+            <el-button type="info" icon="el-icon-message" circle></el-button>
+            <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+            <el-button type="danger" icon="el-icon-delete" circle></el-button>
+        </el-row>
+    </div>
+    <el-table  :data="userList" style="width: 100%">
+<!--        <el-table-column prop="date" label="序号" width="180"></el-table-column>
+index不是属性
+-->
+        <el-table-column type="index" width="50"></el-table-column>
+        <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+        <el-table-column prop="age" label="年龄"></el-table-column>
+        <el-table-column prop="email" label="email"></el-table-column>
+    </el-table>
+    <br/>
+<!-- 纵向边框 斑马纹-->
+    <el-table border stripe :data="userList" style="width: 100%">
+        <el-table-column type="selection" width="50"></el-table-column>
+        <el-table-column type="index" width="50"></el-table-column>
+        <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+        <el-table-column prop="age" label="年龄"></el-table-column>
+        <el-table-column prop="email" label="email"></el-table-column>
+    </el-table>
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>序号</td>-->
+<!--            <td>姓名</td>-->
+<!--            <td>年龄</td>-->
+<!--            <td>email</td>-->
+<!--        </tr>-->
+<!--        <tr v-for="(item,index) in userList">-->
+<!--            <td>{{index+1}}</td>-->
+<!--            <td>{{item.name}}</td>-->
+<!--            <td>{{item.age}}</td>-->
+<!--            <td>{{item.email}}</td>-->
+<!--        </tr>-->
+<!--    </table>-->
+
+</div>
+
+<script src="vue.js"></script>
+<script src="axios.js"></script>
+<!-- 引入组件库 基于vue-->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                userList: [],
+            }
+        },
+        created() {
+            this.showUserList()
+        },
+        methods: {
+            showUserList() {
+                //通过axios访问远程接口
+                const request = axios.create({
+                    baseURL: 'http://localhost:8080',
+                })
+
+                request.get('/user/list')
+                    .then((response) => {
+                        console.log('reponse:', response)
+                        this.userList = response.data
+                    })
+                    .catch((error) => {
+                        console.log('error:', error)
+                    })
+            },
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,12 +1,60 @@
 <template>
-<!--  自定义组件 一般只有一个div块-->
-  <div>
-    积分等级列表
+  <!--  自定义组件 一般只有一个div块-->
+<!--  获取到的list数据渲染-->
+  <div class="app-container">
+<!-- 表格-->
+    <el-table  :data="list"  border stripe >
+      <el-table-column type="index" width="50"></el-table-column>
+      <el-table-column prop="borrowAmount" label="借款额度" ></el-table-column>
+      <el-table-column prop="integralStart" label="积分区间开始" ></el-table-column>
+      <el-table-column prop="integralEnd" label="积分区间结束"></el-table-column>
+      <el-table-column  label="操作">
+<!-- 取id-->
+        <template slot-scope="scope">
+<!-- scope.row 当前行的所有数据 上下文对象-->
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeById(scope.row.id)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
-export default {
+//引入api模块
+import integralGradeApi from '@/api/core/integral-grade'
 
+export default {
+  data() {
+    return {
+      list:[]  //积分等级列表
+    }
+  },
+  //页面一加载就调
+  created() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData(){
+      integralGradeApi.list().then(response=>{
+        this.list=response.data.list
+      })
+    },
+    removeById(id) {
+      //debugger 断点调试
+      console.log('id',id)
+      integralGradeApi.removeById(id).then(response=>{
+        //element 的消息提示框
+        this.$message({
+          //如果没有 showclose 弹出的框就没有关闭的叉在后面
+          // showClose: true,
+          message: response.message,
+          type: 'success'
+        })
+      //  一旦删除成功
+        this.fetchData()
+      })
+    }
+  }
 }
 </script>
+<!--<style scoped></style>-->

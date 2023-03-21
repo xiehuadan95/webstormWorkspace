@@ -42,17 +42,36 @@ export default {
     removeById(id) {
       //debugger 断点调试
       console.log('id',id)
-      integralGradeApi.removeById(id).then(response=>{
-        //element 的消息提示框
-        this.$message({
-          //如果没有 showclose 弹出的框就没有关闭的叉在后面
-          // showClose: true,
-          message: response.message,
-          type: 'success'
-        })
-      //  一旦删除成功
-        this.fetchData()
+
+      this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'   //sucess ,info,error warning
       })
+        .then(() => {
+        return integralGradeApi.removeById(id)
+      })
+        .then(response=>{
+          //element 的消息提示框
+          this.$message({
+            //如果没有 showclose 弹出的框就没有关闭的叉在后面
+            // showClose: true,
+            message: response.message,
+            type: 'success'
+          })
+          //  一旦删除成功
+          this.fetchData()
+        })
+        .catch((error) => {
+          console.log('catch的error',error)
+          if(error=='cancel') {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
+          }
+      })
+
     }
   }
 }

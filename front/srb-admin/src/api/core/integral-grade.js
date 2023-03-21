@@ -1,6 +1,6 @@
 //引入axios的初始化模块
 import request from '@/utils/request'
-import {id} from "html-webpack-plugin/lib/chunksorter";
+
 
 //我们导出 默认模块，list方法
 export default {

@@ -18,4 +18,27 @@ export default {
       method:'delete'
     })
   },
+  //新增的时候传数据对象过来 因为接口需要传入的是requestBody 需要传入一个json对象，需要用关键字 data
+  save(integralGrade) {
+    return request({
+      url:'/admin/core/integralGrade/save',
+      method:'post',
+      data: integralGrade
+    })
+  },
+  //回显api 修改的时候跳转页面将查询到的数据进行回显 然后修改
+  getById(id){
+    return request({
+      url: '/admin/core/integralGrade/get/'+id,
+      method:'get',
+    })
+  },
+
+  updateById(integralGrade){
+    return request({
+      url:'/admin/core/integralGrade/update',
+      method:'put',
+      data: integralGrade
+    })
+  }
 }

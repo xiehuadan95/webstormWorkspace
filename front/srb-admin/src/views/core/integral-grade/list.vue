@@ -9,8 +9,14 @@
       <el-table-column prop="integralStart" label="积分区间开始" ></el-table-column>
       <el-table-column prop="integralEnd" label="积分区间结束"></el-table-column>
       <el-table-column  label="操作">
-<!-- 取id-->
+<!-- 取id -->
         <template slot-scope="scope">
+<!-- 路由跳转 这个按钮是一个超链接-->
+          <router-link :to="'/core/integral-grade/edit/'+scope.row.id" style="margin-right:5px">
+            <el-button type="primary" size="mini" icon="el-icon-edit">
+              修改
+            </el-button>
+          </router-link>
 <!-- scope.row 当前行的所有数据 上下文对象-->
           <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeById(scope.row.id)">删除</el-button>
         </template>

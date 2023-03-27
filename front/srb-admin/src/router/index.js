@@ -45,7 +45,7 @@ export const constantRoutes = [
 
   {
     path: '/',
-    component: Layout,
+    component: Layout,  //布局组件
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',

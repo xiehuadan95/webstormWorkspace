@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'dashboard' }
+      meta: {title: '首页', icon: 'dashboard'}
     }]
   },
   {
@@ -59,37 +59,47 @@ export const constantRoutes = [
     component: Layout,  //布局组件，父路由在整个大的布局下进行的 大的布局是没有动的
     redirect: '/core/integral-grade/list',  //会跳转，当访问/core/integral-grade 会自动跳转到/list
     name: 'coreIntegralGrade',  //每个路由节点的name不能相同
-    meta: {title: '积分等级管理',icon:'el-icon-s-marketing'},
+    meta: {title: '积分等级管理', icon: 'el-icon-s-marketing'},
     alwaysShow: true,  // 默认false 当且仅当父节点下只有一个子节点时，不显式父节点 ,true的时候任何时候都会显示父节点
     children: [
       {
         path: 'list',
-        name:'coreIntegralGradeList',
-        component: ()=>import('@/views/core/integral-grade/list'), //指向的模板组件
+        name: 'coreIntegralGradeList',
+        component: () => import('@/views/core/integral-grade/list'), //指向的模板组件
         meta: {title: '积分等级列表'}  //定义的导航的标题
       },
       {
-        path:'create',
-        name:'coreIntegralGradeCreate',
+        path: 'create',
+        name: 'coreIntegralGradeCreate',
         component: () => import('@/views/core/integral-grade/form'),
         meta: {title: '新增积分等级'}
       },
       {
         //编辑的时候 不在导航栏里面加载页面，点击修改按钮的时候，进入这个按钮，平时不显式在左导航栏中
         path: 'edit/:id',  //:id 是一个占位符，表示这部分url会是任何一个id
-        name:'coreIntegralGradeEdit',
+        name: 'coreIntegralGradeEdit',
         component: () => import('@/views/core/integral-grade/form'),
         meta: {title: '编辑积分等级'},
-        hidden:true
+        hidden: true
       }
     ]
-
-
-
   },
-
-
-
+  {
+    path: '/core',
+    component: Layout,
+    redirect: '/core/dict/list',
+    name: 'coreDict',
+    meta: { title: '系统设置', icon: 'el-icon-setting'},
+    alwaysShow: true,
+    children: [
+      {
+        path: 'dict/list',
+        name: '数据字典',
+        component: () => import('@/views/core/dict/list'),
+        meta: { title: '数据字典'}
+      }
+    ]
+  },
 
 
   {
@@ -97,20 +107,20 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: '例子', icon: 'el-icon-s-help' },
+    meta: {title: '例子', icon: 'el-icon-s-help'},
     alwaysShow: true,
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: '表格', icon: 'table' }
+        meta: {title: '表格', icon: 'table'}
       },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: '树', icon: 'tree' }
+        meta: {title: '树', icon: 'tree'}
       }
     ]
   },
@@ -118,14 +128,14 @@ export const constantRoutes = [
   {
     path: '/form',
     component: Layout,
-    meta: { title: '一级标题', icon: 'el-icon-goods' },
+    meta: {title: '一级标题', icon: 'el-icon-goods'},
     alwaysShow: true,
     children: [
       {
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: '表单', icon: 'form' }
+        meta: {title: '表单', icon: 'form'}
       }
     ]
   }
@@ -150,31 +160,31 @@ export const asyncRoutes = [
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
-        meta: { title: 'Menu1' },
+        meta: {title: 'Menu1'},
         children: [
           {
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
+            meta: {title: 'Menu1-1'}
           },
           {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
             name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
+            meta: {title: 'Menu1-2'},
             children: [
               {
                 path: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
+                meta: {title: 'Menu1-2-1'}
               },
               {
                 path: 'menu1-2-2',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
+                meta: {title: 'Menu1-2-2'}
               }
             ]
           },
@@ -182,14 +192,14 @@ export const asyncRoutes = [
             path: 'menu1-3',
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
+            meta: {title: 'Menu1-3'}
           }
         ]
       },
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        meta: {title: 'menu2'}
       }
     ]
   },
@@ -200,18 +210,18 @@ export const asyncRoutes = [
     children: [
       {
         path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: {title: 'External Link', icon: 'link'}
       }
     ]
   },
 
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  {path: '*', redirect: '/404', hidden: true}
 ]
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({y: 0}),
   routes: constantRoutes
 })
 

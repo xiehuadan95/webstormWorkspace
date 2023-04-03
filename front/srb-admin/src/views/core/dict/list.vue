@@ -1,7 +1,8 @@
 <template>
   <div class="app-container">
-    <!-- Excel 导入按钮-->
+
     <div style="margin-bottom: 10px;">
+      <!-- Excel 导入按钮-->
       <el-button
         @click="dialogVisible = true"
         type="primary"
@@ -9,6 +10,15 @@
         icon="el-icon-download"
       >
         导入Excel
+      </el-button>
+<!--  Excel 导出按钮-->
+      <el-button
+        @click="exportData"
+        type="primary"
+        size="mini"
+        icon="el-icon-upload2"
+      >
+        导出Excel
       </el-button>
     </div>
     <!-- dialog 当点击这个按钮的时候 会弹出一个文件上传表单  dialog的修饰符 sync 加上后就可以自动关闭 右上角的x就好使了 语法糖 -->
@@ -71,7 +81,11 @@ export default {
     //上传失败回调：通信失败
     fileUploadError(error){
       this.$message.error('数据导入失败')
-    }
+    },
+    exportData(){
+      //导出excel并下载 由于是web端的写 不能用ajax请求，ajax是无状态的，需要显示的去调用刷新当前页面 才能以附件形式下载
+      window.location.href=this.BASE_API+'/admin/core/dict/export'
+    },
 
   }
 }

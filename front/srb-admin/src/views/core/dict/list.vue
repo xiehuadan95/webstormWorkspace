@@ -52,42 +52,88 @@ on-success： 成功回调  以数据绑定形式出现的on- ， 可以理解�
         </el-button>
       </div>
     </el-dialog>
+<!-- 加载函数load-->
+    <el-table :data="list" border row-key="id" lazy :load="load">
+      <el-table-column label="名称" align="left" prop="name">
+<!--        用模板 易于后续扩展 -->
+        <template slot-scope="scope">
+          <span>{{ scope.row.name }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="编码" align="left">
+        <template slot-scope="{ row }">
+         {{ row.dictCode  }}
+        </template>
+      </el-table-column>
+      <el-table-column label="值" align="left">
+        <template slot-scope="scope">
+          <span>{{ scope.row.value  }}</span>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
+import  dictApi  from '@/api/core/dict'
+
 export default {
   data() {
     return {
       dialogVisible: false,   //对话框是否显示
       BASE_API: process.env.VUE_APP_BASE_API,   //获取后端接口地址 从环境变量中拿
+      list: []   //数据字典列表
     }
   },
+  //页面一加载的时候就展示出来
+  created() {
+    this.fetchData()
+  },
   methods: {
+    //获取数据字典列表 顶层类别就是1  对dictApi进行数据绑定
+    fetchData() {
+      dictApi.listByParentId(1).then(response => {
+        this.list = response.data.list
+      })
+    },
+
+
     //上传多于一个文件时
-    fileUploadExceed(){
+    fileUploadExceed() {
       this.$message.warning('只能选取一个文件')
     },
     //上传成功回调
-    fileUploadSucess(response){
-      if(response.code===0){
+    fileUploadSucess(response) {
+      if (response.code === 0) {
         this.$message.success('数据导入成功')
-        this.dialogVisible=false
-      }else {
+        this.dialogVisible = false
+      } else {
         //业务失败
         this.$message.error(response.message)
       }
     },
     //上传失败回调：通信失败
-    fileUploadError(error){
+    fileUploadError(error) {
       this.$message.error('数据导入失败')
     },
-    exportData(){
+    exportData() {
       //导出excel并下载 由于是web端的写 不能用ajax请求，ajax是无状态的，需要显示的去调用刷新当前页面 才能以附件形式下载
-      window.location.href=this.BASE_API+'/admin/core/dict/export'
+      window.location.href = this.BASE_API + '/admin/core/dict/export'
+    },
+    //加载二级节点
+    load(tree, treeNode, resolve) {
+      console.log('tree',tree)
+      console.log('treeNode',treeNode)
+      //获取数据
+      dictApi.listByParentId(tree.id).then(response => {
+        //把拿到的子节点传递给resolv这个回调函数，自动折叠
+        resolve(response.data.list)
+      })
     },
 
+
   }
+
 }
 </script>
 
